@@ -139,6 +139,18 @@ class DankMemer(commands.Cog):
             return await self.send_error(ctx, data)
         data.name = "abandon.png"
         await self.send_img(ctx, discord.File(data))
+    
+    @commands.check(tokencheck)
+    @commands.command()
+    async def abesaale(self, ctx, image: ImageFinder = None):
+        """Abe saale."""
+        if image is None:
+            image = ctx.author.avatar_url_as(static_format="png")
+        data = await self.get(ctx, f"/abesaale?avatar1={image}")
+        if isinstance(data, dict):
+            return await self.send_error(ctx, data)
+        data.name = "abesaale.png"
+        await self.send_img(ctx, discord.File(data))                   
 
     @commands.check(tokencheck)
     @commands.command(aliases=["aborted"])
