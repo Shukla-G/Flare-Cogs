@@ -836,6 +836,18 @@ class DankMemer(commands.Cog):
             return await self.send_error(ctx, data)
         data.name = "kowalski.gif"
         await self.send_img(ctx, discord.File(data))
+    
+    @commands.check(tokencheck)
+    @commands.command()
+    async def kyabe(self, ctx, image: ImageFinder = None):
+        """dissapointed pakistani guy"""
+        if image is None:
+            image = ctx.author.avatar_url_as(static_format="png")
+        data = await self.get(ctx, f"/kyabe?avatar1={image}")
+        if isinstance(data, dict):
+            return await self.send_error(ctx, data)
+        data.name = "kyabe.png"
+        await self.send_img(ctx, discord.File(data))                   
 
     @commands.check(tokencheck)
     @commands.command()
