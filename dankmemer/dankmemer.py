@@ -783,6 +783,17 @@ class DankMemer(commands.Cog):
             return await self.send_error(ctx, data)
         data.name = "justpretending.png"
         await self.send_img(ctx, discord.File(data))
+    
+    @commands.check(tokencheck)
+    @commands.command()
+    async def kabhi(self, ctx, *, text: commands.clean_content(fix_channel_mentions=True)):
+        """kabhi aisa lagta hai"""
+        text = self.parse_text(text)
+        data = await self.get(ctx, f"/kabhi?text={text}")
+        if isinstance(data, dict):
+            return await self.send_error(ctx, data)
+        data.name = "kabhi.png"
+        await self.send_img(ctx, discord.File(data))                   
 
     @commands.check(tokencheck)
     @commands.command()
