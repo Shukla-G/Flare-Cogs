@@ -296,6 +296,18 @@ class DankMemer(commands.Cog):
             return await self.send_error(ctx, data)
         data.name = "brazzers.png"
         await self.send_img(ctx, discord.File(data))
+    
+    @commands.check(tokencheck)
+    @commands.command()
+    async def bsdk(self, ctx, image: ImageFinder = None):
+        """Bhosdike"""
+        if image is None:
+            image = ctx.author.avatar_url_as(static_format="png")
+        data = await self.get(ctx, f"/bsdk?avatar1={image}")
+        if isinstance(data, dict):
+            return await self.send_error(ctx, data)
+        data.name = "bsdk.png"
+        await self.send_img(ctx, discord.File(data))                   
 
     @commands.check(tokencheck)
     @commands.command()
