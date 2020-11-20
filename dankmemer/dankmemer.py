@@ -847,7 +847,19 @@ class DankMemer(commands.Cog):
         if isinstance(data, dict):
             return await self.send_error(ctx, data)
         data.name = "kyabe.png"
-        await self.send_img(ctx, discord.File(data))                   
+        await self.send_img(ctx, discord.File(data))   
+                       
+    @commands.check(tokencheck)
+    @commands.command()
+    async def kyahaal(self, ctx, image: ImageFinder = None):
+        """Are maa chudi padi hai"""
+        if image is None:
+            image = ctx.author.avatar_url_as(static_format="png")
+        data = await self.get(ctx, f"/kyahaal?avatar1={image}")
+        if isinstance(data, dict):
+            return await self.send_error(ctx, data)
+        data.name = "kyahaal.png"
+        await self.send_img(ctx, discord.File(data))                      
 
     @commands.check(tokencheck)
     @commands.command()
